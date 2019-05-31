@@ -15,6 +15,7 @@ class TestCustomer < MiniTest::Test
     @type1 = Type.new({
       'id' => 1,
       'title' => 'Vinyassa Flow',
+      'colour' => 'blue',
       'about' => 'A standard yoga practice'
       })
     @room1 = Room.new({

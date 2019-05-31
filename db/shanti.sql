@@ -11,7 +11,8 @@ DROP TABLE IF EXISTS types CASCADE;
 CREATE TABLE types (
   id SERIAL8 PRIMARY KEY,
   title VARCHAR(64),
-  about VARCHAR(255)
+  colour VARCHAR(64),
+  about TEXT
 );
 
 CREATE TABLE rooms (
@@ -24,7 +25,7 @@ CREATE TABLE rooms (
 CREATE TABLE teachers (
   id SERIAL8 PRIMARY KEY,
   name VARCHAR(64),
-  bio VARCHAR(255),
+  bio TEXT,
   profile VARCHAR(64)
 );
 
@@ -33,7 +34,7 @@ CREATE TABLE members (
   name VARCHAR(64),
   join_date DATE,
   waver BOOLEAN NOT NULL,
-  info VARCHAR(255),
+  info TEXT,
   membership DATE
 );
 
@@ -51,5 +52,5 @@ CREATE TABLE sessions (
 CREATE TABLE feedbacks (
   id SERIAL8 PRIMARY KEY,
   session_id INT8 REFERENCES sessions(id),
-  feedback VARCHAR(255)
+  feedback TEXT
 );

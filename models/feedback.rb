@@ -9,4 +9,8 @@ class Feedback
     @session_id = options['session_id'].to_i
     @feedback = options['feedback']
   end
+
+  # def save()
+  #
+  # end
 end#
