@@ -1,10 +1,14 @@
 require_relative('../models/type.rb')
 require_relative('../models/room.rb')
 require_relative('../models/teacher.rb')
+require_relative('../models/member.rb')
+
+require('pry')
 
 Type.delete_all()
 Room.delete_all()
 Teacher.delete_all()
+Member.delete_all()
 
 type1 = Type.new({
   'title' => 'Vinyasa Flow',
@@ -28,3 +32,13 @@ Sasha has over 900 hours Yoga training with global teachers & is a Yoga Alliance
 'profile' => '../public/placeholder.jpeg'
   })
 teacher1.save()
+
+member1 = Member.new({
+  'name' => 'Graham Cowan',
+  'join_date' => '01/04/2018',
+  'waver' => 'true',
+  'info' => 'Looking to work on hip openers',
+  'membership' => '20/05/2019'
+  })
+# binding.pry
+member1.save()
