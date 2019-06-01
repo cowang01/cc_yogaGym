@@ -42,7 +42,8 @@ member1 = Member.new({
   'join_date' => Date.strptime('2018-30-04', "%Y-%d-%m"),
   'waver' => 'true',
   'info' => 'Looking to work on hip openers',
-  'membership' => Date.strptime('2019-20-06', "%Y-%d-%m")
+  'membership' => Date.strptime('2019-20-06', "%Y-%d-%m"),
+  'membership_vol'=> 0
   })
 # binding.pry
 member1.save()
@@ -79,7 +80,7 @@ feedback1.save()
 # feedback1.update()
 
 
-test2 = session1.book(15)
-test = session1.cancel_book(14)
+test2 = member1.add_membership
+# test =
 binding.pry
 nil

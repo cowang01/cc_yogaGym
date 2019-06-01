@@ -83,12 +83,13 @@ class Session
     return "booking cancelled"
   end
 
-  def payment(member_id)
-    sql "SELECT * FROM members WHERE id = $1"
+  def member_check(member_id)
+    sql = "SELECT * FROM members WHERE id = $1"
     values = [member_id]
     member = SqlRunner.run(sql, values)[0]
     membership = Member.new(member).membership
-    if membership >= @event_date
+    mem_vol = Member.new(member).membership_vol
+    if membership >= @event_date && mem_vol > 0
       return true
     else
       return false

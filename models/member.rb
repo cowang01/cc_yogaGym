@@ -3,7 +3,7 @@ require 'Date'
 
 class Member
   attr_reader :id
-  attr_accessor :name, :join_date, :waver, :info, :membership
+  attr_accessor :name, :join_date, :waver, :info, :membership, :membership_vol
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
@@ -12,13 +12,13 @@ class Member
     @waver = options['waver'] == 'true'
     @info = options['info']
     @membership = options['membership']
-    
+    @membership_vol = options['membership_vol'].to_i
   end
   # Date.strptime( , "%Y-%d-%m")
 
   def save()
-    sql = "INSERT INTO members (name, join_date, waver, info, membership) VALUES ($1, $2, $3, $4, $5) RETURNING id;"
-    values = [@name, @join_date, @waver, @info, @membership]
+    sql = "INSERT INTO members (name, join_date, waver, info, membership, membership_vol) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;"
+    values = [@name, @join_date, @waver, @info, @membership, @membership_vol]
     member = SqlRunner.run(sql, values)[0]
     @id = member['id'].to_i
   end
@@ -35,8 +35,8 @@ class Member
   end
 
   def update()
-    sql = "UPDATE members SET (name, join_date, waver, info, membership) = ($1, $2, $3, $4, $5) WHERE id = $6"
-    values = [@name, @join_date, @waver, @info, @membership, @id]
+    sql = "UPDATE members SET (name, join_date, waver, info, membership, membership_vol) = ($1, $2, $3, $4, $5, $6) WHERE id = $7"
+    values = [@name, @join_date, @waver, @info, @membership, @membership_vol, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -56,6 +56,11 @@ class Member
   def sign_waver()
     @waver = true
     update()
+  end
+
+  def add_basic_membership()
+    @membership = Date.today + 7
+    @membership_vol += 1
   end
 
 
