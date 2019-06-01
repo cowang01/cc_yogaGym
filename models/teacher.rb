@@ -48,4 +48,13 @@ class Teacher
     return Teacher.new(teacher)
   end
 
+  def push_book(member_id, session_id)
+    sql = "SELECT * FROM sessions WHERE id = $1"
+    values = [session_id]
+    session = SqlRunner.run(sql, values)[0]
+    push_session = Session.new(session)
+    push_session.member_id.push(member_id)
+    push_session.update()
+  end
+
 end#

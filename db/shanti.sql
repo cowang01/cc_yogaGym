@@ -44,7 +44,7 @@ CREATE TABLE sessions (
   event_time TIME,
   room_id INT8 REFERENCES rooms(id),
   teacher_id INT8 REFERENCES teachers(id),
-  member_id INT8 REFERENCES members(id),
+  member_id TEXT,
   type_id INT8 REFERENCES types(id),
   status VARCHAR(64)
 );

@@ -52,4 +52,9 @@ class Member
     return Member.new(member)
   end
 
+  def sign_waver()
+    @waver = true
+    update()
+  end
+
 end#

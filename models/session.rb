@@ -10,10 +10,11 @@ class Session
     @event_time = options['event_time']
     @room_id = options['room_id'].to_i
     @teacher_id = options['teacher_id'].to_i
-    @member_id = options['member_id'].to_i
+    @member_id = options['member_id'].split().map { |id| id.to_i } #if id.to_i == true
     @type_id = options['type_id'].to_i
     @status = options['status']
   end
+  # .reject {|element| element == '[' || element == ']' }.map {|id| id}
 
   def save()
     sql = "INSERT INTO sessions (event_date, event_time, room_id, teacher_id, member_id, type_id, status) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id;"
