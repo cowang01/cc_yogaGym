@@ -6,7 +6,7 @@ class Session
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
-    @event_date = Date.strptime(options['event_date'], "%d/%m/%Y").strftime("%Y-%m-%d")
+    @event_date = options['event_date']
     @event_time = options['event_time']
     @room_id = options['room_id'].to_i
     @teacher_id = options['teacher_id'].to_i
@@ -31,6 +31,25 @@ class Session
     sql = "DELETE FROM sessions WHERE id = $1;"
     values = [id]
     SqlRunner.run(sql, values)
+  end
+
+  def update()
+    sql = "UPDATE sessions SET (event_date, event_time, room_id, teacher_id, member_id, type_id, status) = ($1, $2, $3, $4, $5, $6, $7) WHERE id = $8"
+    values = [@event_date, @event_time, @room_id, @teacher_id, @member_id, @type_id, @status, @id]
+    SqlRunner.run(sql, values)
+  end
+
+  def self.view_all()
+    sql = "SELECT * FROM sessions"
+    sessions = SqlRunner.run(sql)
+    return sessions.map {|session| Session.new(session)}
+  end
+
+  def self.find(id)
+    sql = "SELECT * FROM sessions WHERE id = $1"
+    values = [id]
+    session = SqlRunner.run(sql, values)[0]
+    return Session.new(session)
   end
 
 end#

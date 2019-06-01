@@ -39,16 +39,16 @@ teacher1.save()
 
 member1 = Member.new({
   'name' => 'Graham Cowan',
-  'join_date' => '01/04/2018',
+  'join_date' => Date.strptime('2018-30-04', "%Y-%d-%m"),
   'waver' => 'true',
   'info' => 'Looking to work on hip openers',
-  'membership' => '20/05/2019'
+  'membership' => Date.strptime('2019-20-06', "%Y-%d-%m")
   })
 # binding.pry
 member1.save()
 
 session1 = Session.new({
-  'event_date' => '05/06/2019',
+  'event_date' => Date.strptime('05/06/2019', "%d/%m/%Y").strftime("%Y-%m-%d"),
   'event_time' => '18:00',
   'room_id' => room1.id,
   'teacher_id' => teacher1.id,
@@ -57,6 +57,7 @@ session1 = Session.new({
   'status' => 'open'
   })
 session1.save()
+# Date.strptime(options['event_date'], "%d/%m/%Y").strftime("%Y-%m-%d")
 
 feedback1 = Feedback.new({
   'session_id' => session1.id,
@@ -70,9 +71,13 @@ feedback1.save()
 # room1.update()
 # teacher1.name = 'Cat Glasgow'
 # teacher1.update()
-member1.join_date = '03/04/2018'
-member1.update()
+# member1.join_date = '2018-03-04'
+# member1.update()
+# session1.event_time = '18:30'
+# session1.update()
+feedback1.feedback = ''
+feedback1.update()
 
-test = Member.find(16)
+test = Feedback.find(8)
 binding.pry
 nil

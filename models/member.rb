@@ -8,11 +8,12 @@ class Member
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @name = options['name']
-    @join_date =  Date.strptime(options['join_date'], "%d/%m/%Y").strftime("%Y-%m-%d")
+    @join_date = options['join_date']
     @waver = options['waver'] == 'true'
     @info = options['info']
-    @membership = Date.strptime(options['membership'], "%d/%m/%Y").strftime("%Y-%m-%d")
+    @membership = options['membership']
   end
+  # Date.strptime( , "%Y-%d-%m")
 
   def save()
     sql = "INSERT INTO members (name, join_date, waver, info, membership) VALUES ($1, $2, $3, $4, $5) RETURNING id;"
@@ -48,7 +49,6 @@ class Member
     sql = "SELECT * FROM members WHERE id = $1"
     values = [id]
     member = SqlRunner.run(sql, values)[0]
-    binding.pry
     return Member.new(member)
   end
 

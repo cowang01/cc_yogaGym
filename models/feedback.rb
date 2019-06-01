@@ -28,4 +28,23 @@ class Feedback
     SqlRunner.run(sql, values)
   end
 
+  def update()
+    sql = "UPDATE feedbacks SET (session_id, feedback) = ($1, $2) WHERE id = $3"
+    values = [@session_id, @feedback, @id]
+    SqlRunner.run(sql, values)
+  end
+
+  def self.view_all()
+    sql = "SELECT * FROM feedbacks"
+    feedbacks = SqlRunner.run(sql)
+    return feedbacks.map {|feedback| Feedback.new(feedback)}
+  end
+
+  def self.find(id)
+    sql = "SELECT * FROM feedbacks WHERE id = $1"
+    values = [id]
+    feedback = SqlRunner.run(sql, values)[0]
+    return Feedback.new(feedback)
+  end
+
 end#
