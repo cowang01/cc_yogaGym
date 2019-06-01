@@ -35,7 +35,8 @@ CREATE TABLE members (
   join_date DATE,
   waver BOOLEAN NOT NULL,
   info TEXT,
-  membership DATE
+  membership DATE,
+  membership_vol INT4
 );
 
 CREATE TABLE sessions (

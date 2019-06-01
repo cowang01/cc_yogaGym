@@ -10,7 +10,7 @@ class Session
     @event_time = options['event_time']
     @room_id = options['room_id'].to_i
     @teacher_id = options['teacher_id'].to_i
-    @member_id = options['member_id'].split().map { |id| id.to_i } #if id.to_i == true
+    @member_id = options['member_id'].split().map { |id| id.to_i }
     @type_id = options['type_id'].to_i
     @status = options['status']
   end
@@ -51,6 +51,48 @@ class Session
     values = [id]
     session = SqlRunner.run(sql, values)[0]
     return Session.new(session)
+  end
+
+  def available()
+    sql = "SELECT * FROM rooms WHERE id = $1"
+    values = [@room_id]
+    size = SqlRunner.run(sql, values)[0].size.to_i
+    if size <= @member_id.count()
+      return false
+      @status = 'full'
+      update()
+    else
+      return true
+    end
+  end
+
+  def book(member_id)
+    message = nil
+    if available() == true
+      @member_id.push(member_id)
+      update()
+      message = true
+    else
+      message = false
+    end
+    return message
+  end
+
+  def cancel_book(member_id)
+    @member_id.delete(member_id)
+    return "booking cancelled"
+  end
+
+  def payment(member_id)
+    sql "SELECT * FROM members WHERE id = $1"
+    values = [member_id]
+    member = SqlRunner.run(sql, values)[0]
+    membership = Member.new(member).membership
+    if membership >= @event_date
+      return true
+    else
+      return false
+    end
   end
 
 end#

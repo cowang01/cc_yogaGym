@@ -12,6 +12,7 @@ class Member
     @waver = options['waver'] == 'true'
     @info = options['info']
     @membership = options['membership']
+    
   end
   # Date.strptime( , "%Y-%d-%m")
 
@@ -56,5 +57,7 @@ class Member
     @waver = true
     update()
   end
+
+
 
 end#

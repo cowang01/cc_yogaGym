@@ -44,9 +44,9 @@ class TestCustomer < MiniTest::Test
       'event_time' => '18:00',
       'room_id' => 34,
       'teacher_id' => 6,
-      'member_id' => 345,
+      'member_id' => '[345]',
       'type_id' => 2,
-      'status' => 'full'
+      'status' => 'open'
       })
     @feedback1 = Feedback.new({
       'id' => '6',
@@ -78,6 +78,9 @@ class TestCustomer < MiniTest::Test
   def test_feedback_session()
     assert_equal(6789, @feedback1.session_id)
   end
+
+  # def test_session_available()
+  #   assert_equal(true, )
 
 
 # further testing in seed

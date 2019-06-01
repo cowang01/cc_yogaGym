@@ -78,7 +78,8 @@ feedback1.save()
 # feedback1.feedback = ''
 # feedback1.update()
 
-test = teacher1.push_book(4, 15)
-test2 = teacher1.push_book(3, 15)
+
+test2 = session1.book(15)
+test = session1.cancel_book(14)
 binding.pry
 nil
