@@ -80,4 +80,7 @@ class TestCustomer < MiniTest::Test
   end
 
 
+# further testing in seed
+
+
 end#

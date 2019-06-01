@@ -14,8 +14,8 @@ class Teacher
   def save()
     sql = "INSERT INTO teachers (name, bio, profile) VALUES ($1, $2, $3) RETURNING id;"
     values = [@name, @bio, @profile]
-    room = SqlRunner.run(sql, values)[0]
-    @id = room['id'].to_i
+    teacher = SqlRunner.run(sql, values)[0]
+    @id = teacher['id'].to_i
   end
 
   def self.delete_all()
@@ -27,6 +27,25 @@ class Teacher
     sql = "DELETE FROM teachers WHERE id = $1;"
     values = [id]
     SqlRunner.run(sql, values)
+  end
+
+  def update()
+    sql = "UPDATE teachers SET (name, bio, profile) = ($1, $2, $3) WHERE id = $4"
+    values = [@name, @bio, @profile, @id]
+    SqlRunner.run(sql, values)
+  end
+
+  def self.view_all()
+    sql = "SELECT * FROM teachers"
+    teachers = SqlRunner.run(sql)
+    return teachers.map {|teacher| Teacher.new(teacher)}
+  end
+
+  def self.find(id)
+    sql = "SELECT * FROM teachers WHERE id = $1"
+    values = [id]
+    teacher = SqlRunner.run(sql, values)[0]
+    return Teacher.new(teacher)
   end
 
 end#

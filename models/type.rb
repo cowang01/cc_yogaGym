@@ -29,5 +29,24 @@ class Type
     SqlRunner.run(sql, values)
   end
 
+  def update()
+    sql = "UPDATE types SET (title, colour, about) = ($1, $2, $3) WHERE id = $4"
+    values = [@title, @colour, @about, @id]
+    SqlRunner.run(sql, values)
+  end
+
+  def self.view_all()
+    sql = "SELECT * FROM types"
+    types = SqlRunner.run(sql)
+    return types.map {|type| Type.new(type)}
+  end
+
+  def self.find(id)
+    sql = "SELECT * FROM types WHERE id = $1"
+    values = [id]
+    type = SqlRunner.run(sql, values)[0]
+    return Type.new(type)
+  end
+
 
 end#

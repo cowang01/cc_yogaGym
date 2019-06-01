@@ -10,7 +10,22 @@ class Feedback
     @feedback = options['feedback']
   end
 
-  # def save()
-  #
-  # end
+  def save()
+    sql = "INSERT INTO feedbacks (session_id, feedback) VALUES ($1, $2) RETURNING id;"
+    values = [@session_id, @feedback]
+    feedback = SqlRunner.run(sql, values)[0]
+    @id = feedback['id'].to_i
+  end
+
+  def self.delete_all()
+    sql = "DELETE FROM feedbacks;"
+    SqlRunner.run(sql)
+  end
+
+  def self.remove(id)
+    sql = "DELETE FROM feedbacks WHERE id = $1;"
+    values = [id]
+    SqlRunner.run(sql, values)
+  end
+
 end#

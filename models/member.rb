@@ -17,8 +17,8 @@ class Member
   def save()
     sql = "INSERT INTO members (name, join_date, waver, info, membership) VALUES ($1, $2, $3, $4, $5) RETURNING id;"
     values = [@name, @join_date, @waver, @info, @membership]
-    room = SqlRunner.run(sql, values)[0]
-    @id = room['id'].to_i
+    member = SqlRunner.run(sql, values)[0]
+    @id = member['id'].to_i
   end
 
   def self.delete_all()
@@ -32,5 +32,24 @@ class Member
     SqlRunner.run(sql, values)
   end
 
+  def update()
+    sql = "UPDATE members SET (name, join_date, waver, info, membership) = ($1, $2, $3, $4, $5) WHERE id = $6"
+    values = [@name, @join_date, @waver, @info, @membership, @id]
+    SqlRunner.run(sql, values)
+  end
+
+  def self.view_all()
+    sql = "SELECT * FROM members"
+    members = SqlRunner.run(sql)
+    return members.map {|member| Member.new(member)}
+  end
+
+  def self.find(id)
+    sql = "SELECT * FROM members WHERE id = $1"
+    values = [id]
+    member = SqlRunner.run(sql, values)[0]
+    binding.pry
+    return Member.new(member)
+  end
 
 end#
