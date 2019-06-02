@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: #123C69;
+  font-family: monaco;
+}
+
+body {
+  background-image: url('./background.jpg');
+}
+
+.front-box {
+  display: flex;
+  margin: 10px;
+  flex-direction: row;
+}
+
+.front-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 30px;
+}
+
+.front-text {
+  margin: 10px;
+}
+
+.front-text p {
+  font-family: tahoma;
+}
