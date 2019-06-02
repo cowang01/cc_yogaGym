@@ -41,7 +41,7 @@ class Session
   end
 
   def self.view_all()
-    sql = "SELECT * FROM sessions"
+    sql = "SELECT * FROM sessions WHERE event_date >= NOW()"
     sessions = SqlRunner.run(sql)
     return sessions.map {|session| Session.new(session)}
   end
@@ -94,6 +94,20 @@ class Session
     else
       return false
     end
+  end
+
+  def type()
+    sql = "SELECT * FROM types WHERE id = $1"
+    values = [@type_id]
+    type = SqlRunner.run(sql, values)[0]
+    return Type.new(type).title
+  end
+
+  def room()
+    sql = "SELECT * FROM rooms WHERE id = $1"
+    values = [@room_id]
+    room = SqlRunner.run(sql, values)[0]
+    return Room.new(room).title
   end
 
 end#

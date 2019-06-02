@@ -1,0 +1,19 @@
+<href class="admin-header">
+  <h2>Class Schedule</h2>
+  <a href="/gym/ad-menu">back</a>
+  <a href="/gym/ad-create/<%= @teacher.id%>">Add A Class</a>
+  <a href="/gym/ad-view/<%=@teacher.id%>">View Your Classes</a>
+</href>
+<br>
+<href>
+  <p><% for session in @sessions %></p>
+  <p><li><%= session.event_date %></li></p>
+  <p><li><%= session.event_time %></li></p>
+  <p><li><%= session.type() %></li></p>
+  <p><li><%= session.room() %></li></p>
+  <p><% end %></p>
+</href>
+<href>
+
+<h2>test</h2>
+</href>
