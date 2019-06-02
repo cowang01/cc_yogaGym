@@ -21,7 +21,7 @@ get '/gym/ad-menu' do
   else
     erb(:welcome)
   end
-  end
+end
 
 get '/gym/ad-schedule/:id' do
   @sessions = Session.view_all()
@@ -38,6 +38,7 @@ get '/gym/ad-create/:id' do
 end
 
 get '/gym/ad-view/:id' do
+  binding.pry
   @teacher = Teacher.find(params[:id])
   @sessions = @teacher.sessions()
   erb(:'admin/teacher')
@@ -52,9 +53,20 @@ post '/gym/ad-new/:id' do
     'member_id' => "[]",
     'type_id' => params[:type],
     'status' => params[:status]
-  })
-  # binding.pry
-  new_class.save()
+    })
+    # binding.pry
+    new_class.save()
+    redirect(:'admin/menu')
+  end
 
-  redirect(:'admin/menu')
-end
+  get '/gym/ad-push/:id' do
+    @session = Session.find(params[:id])
+    erb(:'admin/push')
+  end
+
+  post '/gym/ad-push/:id' do
+    @session = Session.find(params[:id])
+    @teacher = Teacher.find(@session.teacher_id)
+    @teacher.push_book(params[:member_id].to_i, params[:id])
+    redirect('/gym/ad-view/#{@teacher.id}')
+  end

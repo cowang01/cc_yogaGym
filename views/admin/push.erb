@@ -1,0 +1,22 @@
+<href>
+  <h2>Add Member</h2><br>
+  <a href="/gym/ad-view/<%= @session.teacher_id %>">back</a>
+  <br><br>
+  <p><%= @session.type() %></p><br>
+  <p>Date: <%= @session.event_date %>
+  <%= @session.event_time %></p><br>
+  <p>Room: <%= @session.room() %></p><br>
+  <br>
+</href>
+<href>
+  <form method="post" action="/gym/ad-push/<%= @session.id %>">
+    <label for="person_id">Add Person By ID</label>
+    <input type="number" id="person_id" name="member_id">
+    <br><p>or</p>
+    <label for="person_name">Add Person By Name</label>
+    <input type="text" id="member_name" name="member_name"><br>
+    <br>
+    <input type="submit" value="Update">
+  </form>
+</href>
+<br>

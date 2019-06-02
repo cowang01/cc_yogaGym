@@ -7,13 +7,13 @@
   <form action="/gym/ad-new/<%=@teacher.id%>" method="post">
     <label for="session-type">Class Type: </label>
     <% for type in @types %>
-      <input type="radio" id="type" value="<%= type.id %>"/>
+      <input type="radio" id="type" name="type" value="<%= type.id %>"/>
       <label for="type"><%= type.title %></label><br>
     <% end %>
     <label for="session_date">Date: </label>
-      <input type="date" id="event_date"/>
+      <input type="date" name="event_date" id="event_date"/>
     <label for="session_time">Time: </label>
-      <input type="time" id="event_time"/><br>
+      <input type="time" name="event_time" id="event_time"/><br>
     <label for="room-id">Room: </label>
     <% for room in @rooms %>
       <input type="radio" id="room_id" value="<%= room.id %>"/>
