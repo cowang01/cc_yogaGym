@@ -31,11 +31,30 @@ get '/gym/ad-schedule/:id' do
 end
 
 get '/gym/ad-create/:id' do
+  @rooms = Room.view_all()
+  @types = Type.view_all()
   @teacher = Teacher.find(params[:id])
   erb(:'admin/new_session')
-
 end
 
 get '/gym/ad-view/:id' do
+  @teacher = Teacher.find(params[:id])
+  @sessions = @teacher.sessions()
+  erb(:'admin/teacher')
+end
 
+post '/gym/ad-new/:id' do
+  new_class = Session.new({
+    'event_date' => params[:event_date],
+    'event_time' => params[:event_time],
+    'room_id' => params[:room_id],
+    'teacher_id' => params[:id],
+    'member_id' => "[]",
+    'type_id' => params[:type],
+    'status' => params[:status]
+  })
+  # binding.pry
+  new_class.save()
+
+  redirect(:'admin/menu')
 end

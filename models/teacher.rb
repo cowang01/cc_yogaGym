@@ -57,4 +57,11 @@ class Teacher
     push_session.update()
   end
 
+  def sessions()
+    sql = "SELECT * FROM sessions WHERE teacher_id = $1 AND event_date >= NOW()"
+    values = [@id]
+    sessions = SqlRunner.run(sql, values)
+    return sessions.map{ |session| Session.new(session) }
+  end
+
 end#
