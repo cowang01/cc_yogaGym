@@ -90,3 +90,22 @@ post "/gym/ad-new/:id" do
     member.update()
     redirect("/gym/ad-details/#{params[:id]}")
   end
+
+  get "/gym/ad-close/:id" do
+    @session = Session.find(params[:id])
+    erb(:'admin/delete_class')
+    #close class message?
+  end
+
+  post "/gym/ad-delete/:id" do
+    @session = Session.find(params[:id])
+    teacher = @session.teacher_id
+    members = @session.member()
+    for member in members
+      member.membership_vol += 1
+      member.membership = Time.now() + 7
+      member.update()
+    end
+    Session.remove(@session.id)
+    redirect("/gym/ad-view/#{teacher}")
+  end

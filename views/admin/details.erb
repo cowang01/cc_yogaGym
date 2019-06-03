@@ -1,6 +1,8 @@
 <href>
   <a href="/gym/ad-view/<%= @session.teacher_id %>">back</a>
   <br>
+  <a href="/gym/ad-close/<%= @session.id %>">Close/Delete Class</a>
+  <br>
   <p><%= @session.room() %></p>
   <p><%= @session.type() %></p>
   <p><%= @session.event_date %></p>

@@ -84,6 +84,7 @@ class TestCustomer < MiniTest::Test
 
 
 # further testing in seed
+#mvp working.
 
 
 end#
