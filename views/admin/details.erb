@@ -1,5 +1,5 @@
 <href>
-  <a href="/gym/admin">back</a>
+  <a href="/gym/ad-view/<%= @session.teacher_id %>">back</a>
   <br>
   <p><%= @session.room() %></p>
   <p><%= @session.type() %></p>
@@ -8,8 +8,10 @@
   <br>
 </href>
 <href>
-  <p><% for member in @session.member_id %></p>
-  <p><%=  %></p>
+  <p><% for member in @members %></p>
+  <p><%= member.name %></p>
+  <p><%= @session.member_check(member.id) %></p>
+  <p><%= member.info %></p>
   <p><% end %></p>
 </href>
 

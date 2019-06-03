@@ -1,6 +1,9 @@
 <href class="admin-header">
   <h2>Create New Class</h2>
-  <a href="/gym/ad-menu/<%= @teacher.id %>">back</a>
+  <form action="/gym/ad-menu" method="get">
+    <input type="hidden" name="id" id="id" value="<%= @teacher.id %>">
+    <input type="submit" value="back">
+  </form>
 </href>
 <br>
 <href>

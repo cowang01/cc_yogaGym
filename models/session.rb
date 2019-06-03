@@ -10,11 +10,13 @@ class Session
     @event_time = options['event_time']
     @room_id = options['room_id'].to_i
     @teacher_id = options['teacher_id'].to_i
-    @member_id = options['member_id'].split().map { |id| id.to_i }
+    @member_id = options['member_id']
     @type_id = options['type_id'].to_i
     @status = options['status']
   end
-  # .reject {|element| element == '[' || element == ']' }.map {|id| id}
+  #.reject {|element| element == '[' || element == ']' }.map {|id| id}
+  # .split()
+  # options['member_id'].split(',').map { |id| id.to_i }
 
   def save()
     sql = "INSERT INTO sessions (event_date, event_time, room_id, teacher_id, member_id, type_id, status) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id;"
@@ -35,9 +37,10 @@ class Session
   end
 
   def update()
+    # @member_id .split(',').map { |id| id.to_i }
     sql = "UPDATE sessions SET (event_date, event_time, room_id, teacher_id, member_id, type_id, status) = ($1, $2, $3, $4, $5, $6, $7) WHERE id = $8"
     values = [@event_date, @event_time, @room_id, @teacher_id, @member_id, @type_id, @status, @id]
-    SqlRunner.run(sql, values)
+    run = SqlRunner.run(sql, values)
   end
 
   def self.view_all()
@@ -50,7 +53,11 @@ class Session
     sql = "SELECT * FROM sessions WHERE id = $1"
     values = [id]
     session = SqlRunner.run(sql, values)[0]
-    return Session.new(session)
+    session_find = Session.new(session)
+    session_format = session_find.member_id.split(',').map{|id| id.to_i}
+    session_find.member_id = session_format
+    session_find.member_id.delete(0)
+    return session_find
   end
 
   def available()
@@ -75,6 +82,7 @@ class Session
     else
       message = false
     end
+    @member_id.delete(0)
     return message
   end
 
@@ -113,14 +121,13 @@ class Session
   def member()
     all_members = []
     for member in @member_id
-      sql = "SELECT * FROM members WHERE id in $1"
+      sql = "SELECT * FROM members WHERE id = $1"
       values = [member]
       db_member = SqlRunner.run(sql, values)[0]
       new_member = Member.new(db_member)
       all_members.push(new_member)
     end
     return all_members
-    binding.pry
   end
 
 end#

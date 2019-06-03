@@ -53,7 +53,7 @@ session1 = Session.new({
   'event_time' => '18:00',
   'room_id' => room1.id,
   'teacher_id' => teacher1.id,
-  'member_id' => '',
+  'member_id' => '0',
   'type_id' => type1.id,
   'status' => 'open'
   })
@@ -76,11 +76,12 @@ feedback1.save()
 # member1.update()
 # session1.event_time = '18:30'
 # session1.update()
+# teacher1.push_book(28, 32)
 # feedback1.feedback = ''
 # feedback1.update()
 
 
-# test2 = member1.add_basic_membership
+# test2 = Session.find(32)
 # test =
 # binding.pry
 nil

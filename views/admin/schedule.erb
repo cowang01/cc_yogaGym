@@ -1,8 +1,16 @@
 <href class="admin-header">
   <h2>Class Schedule</h2>
-  <a href="/gym/ad-menu<%= @teacher.id %>">back</a>
-  <a href="/gym/ad-create/<%= @teacher.id%>">Add A Class</a>
-  <a href="/gym/ad-view/<%=@teacher.id%>">View Your Classes</a>
+  <form action="/gym/ad-menu" method="get">
+    <input type="hidden" name="id" id="id" value="<%= @teacher.id %>">
+    <input type="submit" value="Back">
+  </form>
+  <form action="/gym/ad-create/<%= @teacher.id %>" method="get">
+    <input type="submit" value="Add a Class">
+  </form>
+  <form action="/gym/ad-view/<%= @teacher.id %>" method="get">
+    <input type="submit" value="View Your Classes">
+  </form>
+
 </href>
 <br>
 <href>

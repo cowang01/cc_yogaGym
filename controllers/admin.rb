@@ -1,6 +1,5 @@
 require( 'sinatra' )
 require( 'sinatra/contrib/all' )
-require('pry')
 
 require_relative('../models/type.rb')
 require_relative('../models/room.rb')
@@ -19,7 +18,7 @@ get "/gym/ad-menu" do
     @teacher = Teacher.find(params['id'].to_i)
     erb(:'admin/menu')
   else
-    erb(:welcome)
+    erb(:welcome) #change to errror screen
   end
 end
 
@@ -73,6 +72,6 @@ post "/gym/ad-new/:id" do
 
   get "/gym/ad-details/:id" do
     @session = Session.find(params[:id])
+    @members = @session.member()
     erb(:'admin/details')
-
   end

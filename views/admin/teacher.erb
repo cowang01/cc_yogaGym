@@ -1,14 +1,17 @@
 <href>
   <p><%= @teacher.name %></p>
   <br>
-  <a href="/gym/admin">back</a>
 </href>
+<form action="/gym/ad-menu" method="get">
+  <input type="hidden" name="id" id="id" value="<%= @teacher.id %>">
+  <input type="submit" value="back">
+</form>
 <br>
 <href>
   <p><% for session in @sessions %></p>
     <p>Date: <%= session.event_date %></p>
     <p>Time: <%= session.event_time %></p>
-    <p>size: <%= session.member_id.count %></p>
+    <p>size: <%= session.member_id.split(',').count - 1%></p>
     <p>status: <%= session.status %></p>
     <br>
     <a href="/gym/ad-push/<%= session.id %>">Add Person</a>
