@@ -1,0 +1,17 @@
+<href>
+  <a href="/gym/admin">back</a>
+  <br>
+  <p><%= @session.room() %></p>
+  <p><%= @session.type() %></p>
+  <p><%= @session.event_date %></p>
+  <p><%= @session.event_time %></p>
+  <br>
+</href>
+<href>
+  <p><% for member in @session.member_id %></p>
+  <p><%=  %></p>
+  <p><% end %></p>
+</href>
+
+
+<!-- @session.member_check(member) -->

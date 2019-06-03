@@ -110,4 +110,17 @@ class Session
     return Room.new(room).title
   end
 
+  def member()
+    all_members = []
+    for member in @member_id
+      sql = "SELECT * FROM members WHERE id in $1"
+      values = [member]
+      db_member = SqlRunner.run(sql, values)[0]
+      new_member = Member.new(db_member)
+      all_members.push(new_member)
+    end
+    return all_members
+    binding.pry
+  end
+
 end#
