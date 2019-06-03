@@ -12,6 +12,11 @@
   <p><%= member.name %></p>
   <p><%= @session.member_check(member.id) %></p>
   <p><%= member.info %></p>
+  <form action="/gym/ad-member/<%= member.id %>" method="get">
+    <input type="hidden" name="session_id" value="<%=@session.id%>">
+    <input type="submit" value="Update Details">
+  </form>
+  <br>
   <p><% end %></p>
 </href>
 

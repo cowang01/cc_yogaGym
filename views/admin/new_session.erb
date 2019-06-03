@@ -5,29 +5,34 @@
     <input type="submit" value="back">
   </form>
 </href>
-<br>
+      <br>
 <href>
   <form action="/gym/ad-new/<%=@teacher.id%>" method="post">
+
     <label for="session-type">Class Type: </label>
-    <% for type in @types %>
+    <p><% for type in @types %></p>
       <input type="radio" id="type" name="type" value="<%= type.id %>"/>
       <label for="type"><%= type.title %></label><br>
-    <% end %>
-    <label for="session_date">Date: </label>
+    <p><% end %></p>
+
+    <label for="event_date">Date: </label>
       <input type="date" name="event_date" id="event_date"/>
-    <label for="session_time">Time: </label>
+    <label for="event_time">Time: </label>
       <input type="time" name="event_time" id="event_time"/><br>
-    <label for="room-id">Room: </label>
+
+    <label for="room_id">Room: </label>
     <% for room in @rooms %>
-      <input type="radio" id="room_id" value="<%= room.id %>"/>
+      <input type="radio" name="room_id" id="room_id" value="<%= room.id %>"/>
       <label for="room_id"> <%= room.title %></label><br>
     <% end %>
+
     <label for="status">Set Status</label>
     <select name="status" id="status">
       <option value="open">Open</option>
       <option value="closed">Closed</option>
       <option value="full">Full</option>
     </select><br>
+
     <input type="submit" value="Create Class"/>
   </form>
 </href>

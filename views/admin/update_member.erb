@@ -1,0 +1,21 @@
+<form action="/gym/ad-details/<%= @session.id %>" method="get">
+  <input type="submit" value="Back">
+</form>
+
+<h2>Update Member Details</h2>
+<br>
+<form action="/gym/ad-member/<%=@session.id%>" method="post">
+  <label for="name">Name: </label>
+  <input type="text" value="<%=@member.name%>" name="name" for="name">
+  <br>
+  <label for="info">Info: </label>
+  <input type="text" value="<%=@member.info%>" name="info" for="info">
+  <input type="hidden" name="member_id" value="<%= @member.id %>"><br>
+  <br>
+  <label for="membership">Paid Valid to Date: </label>
+  <input type="date" name="membership" for="membership" value="<%= @member.membership %>">
+  <label for="membership_vol">Membership Quantity: </label>
+  <input type="number" name="membership_vol" for="membership_vol" value="<%= @member.membership_vol %>">
+  <br>
+  <input type="submit" value="Update Details">
+</form>
