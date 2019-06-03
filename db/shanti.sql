@@ -18,7 +18,7 @@ CREATE TABLE types (
 CREATE TABLE rooms (
   id SERIAL8 PRIMARY KEY,
   title VARCHAR(64),
-  size INT4,
+  sized INT4,
   image VARCHAR(64)
 );
 

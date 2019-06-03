@@ -55,6 +55,7 @@ class Teacher
     push_session = Session.new(session)
     members = push_session.member_id.split(',').map { |id| id.to_i }
     push_session.member_id = members.push(member_id)
+    push_session.available()
     push_session.update()
   end
 

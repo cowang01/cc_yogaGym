@@ -44,6 +44,15 @@ end
 
 post "/gym/ad-new/:id" do
   @teacher = Teacher.find(params[:id])
+  sessions = Session.view_all()
+  check = false
+  for session in sessions
+    #problem with date format
+    if session.event_date == params['event_date'] && session.event_time == params['event_time'] && session.room_id == params['room_id']
+      check = true
+    end
+  end
+  if check == false
   new_class = Session.new({
     'event_date' => params['event_date'],
     'event_time' => params['event_time'],
@@ -55,10 +64,21 @@ post "/gym/ad-new/:id" do
     })
     new_class.save()
     redirect("/gym/ad-schedule/#{@teacher.id}")
+  else
+    redirect("/gym/exists/#{@teacher.id}")
+  end
+  end
+
+  get "/gym/exists/:id" do
+    @teacher = Teacher.find(params[:id])
+    erb(:'admin/exists')
   end
 
   get "/gym/ad-push/:id" do
     @session = Session.find(params[:id])
+    @room = @session.room()
+    @type = @session.type()
+    binding.pry
     erb(:'admin/push')
   end
 
@@ -72,6 +92,8 @@ post "/gym/ad-new/:id" do
   get "/gym/ad-details/:id" do
     @session = Session.find(params[:id])
     @members = @session.member()
+    @room = @session.room()
+    @type = @session.type()
     erb(:'admin/details')
   end
 
@@ -108,4 +130,15 @@ post "/gym/ad-new/:id" do
     end
     Session.remove(@session.id)
     redirect("/gym/ad-view/#{teacher}")
+  end
+
+  get "/gym/ad-delete_member/:id" do
+    @session = Session.find(params['session_id'])
+    @member = Member.find(params[:id])
+    @member.membership_vol += 1
+    @member.membership = Time.now + 7
+    @member.update()
+    @session.member_id.delete(params[:id])
+    @session.update()
+    redirect("/gym/ad-details/#{@session.id}")
   end

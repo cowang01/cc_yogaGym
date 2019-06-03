@@ -63,11 +63,12 @@ class Session
   def available()
     sql = "SELECT * FROM rooms WHERE id = $1"
     values = [@room_id]
-    size = SqlRunner.run(sql, values)[0].size.to_i
-    if size <= @member_id.count()
-      return false
+    rooms = SqlRunner.run(sql, values)[0]
+    room = Room.new(rooms)
+    if room.sized <= @member_id.count()
       @status = 'full'
       update()
+      return false
     else
       return true
     end
@@ -108,14 +109,14 @@ class Session
     sql = "SELECT * FROM types WHERE id = $1"
     values = [@type_id]
     type = SqlRunner.run(sql, values)[0]
-    return Type.new(type).title
+    return Type.new(type)
   end
 
   def room()
     sql = "SELECT * FROM rooms WHERE id = $1"
     values = [@room_id]
     room = SqlRunner.run(sql, values)[0]
-    return Room.new(room).title
+    return Room.new(room)
   end
 
   def member()

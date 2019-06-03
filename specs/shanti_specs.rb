@@ -21,7 +21,7 @@ class TestCustomer < MiniTest::Test
     @room1 = Room.new({
       'id' => '2',
       'title' => 'Main',
-      'size' => 15,
+      'sized' => 15,
       'image' => '.url/image.jpeg'
       })
     @teacher1 = Teacher.new({

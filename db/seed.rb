@@ -24,7 +24,7 @@ type1.save()
 
 room1 = Room.new({
   'title' => 'Ganesh Studio',
-  'size' => '18',
+  'sized' => '18',
   'image' => '../public/placeholder.jpeg'
   })
 room1.save()
