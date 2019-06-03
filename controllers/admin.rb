@@ -78,7 +78,6 @@ post "/gym/ad-new/:id" do
     @session = Session.find(params[:id])
     @room = @session.room()
     @type = @session.type()
-    binding.pry
     erb(:'admin/push')
   end
 

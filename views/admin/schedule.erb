@@ -17,8 +17,8 @@
   <p><% for session in @sessions %></p>
   <p><li><%= session.event_date %></li></p>
   <p><li><%= session.event_time %></li></p>
-  <p><li><%= session.type() %></li></p>
-  <p><li><%= session.room() %></li></p>
+  <p><li><%= session.type().title %></li></p>
+  <p><li><%= session.room().title %></li></p>
   <p><% end %></p>
 </href>
 <href>

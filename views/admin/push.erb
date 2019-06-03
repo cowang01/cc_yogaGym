@@ -2,6 +2,10 @@
   <h2>Add Member</h2><br>
   <a href="/gym/ad-view/<%= @session.teacher_id %>">back</a>
   <br><br>
+   <p><% if @room.sized <= @session.member_id.count %></p>
+    <p>This Session is currently full, are you sure you want to add further members?</p>
+    <p><% end %></p>
+  <br><br>
   <p><%= @type.title %></p><br>
   <p>Date: <%= @session.event_date %>
   <%= @session.event_time %></p><br>

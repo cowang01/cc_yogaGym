@@ -1,0 +1,29 @@
+<href class="member-header">
+  <h2>Class Schedule</h2>
+  <form action="/gym/mem-menu/<%= @member.id %>" method="get">
+    <input type="submit" value="Back">
+  </form>
+
+  <form action="/gym/ad-view/<%= @member.id %>" method="get">
+    <input type="submit" value="View Your Booked Classes">
+  </form>
+
+</href>
+<br>
+<href>
+  <p><% for session in @sessions %></p>
+  <p><li><%= session.event_date %></li></p>
+  <p><li><%= session.event_time %></li></p>
+  <p><li><%= session.type().title %></li></p>
+  <p><li><%= session.room().title %></li></p>
+  <% if session.status == 'open' %>
+  <form action="/gym/mem-book/<%= @member.id %>" method="get">
+    <input type="hidden" name="session_id" id="session_id" value="<%= session.id %>">
+    <input type="submit" value="Book">
+  </form>
+  <% end %>
+  <br>
+  <p><% end %></p>
+</href>
+<href>
+</href>
