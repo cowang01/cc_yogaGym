@@ -1,27 +1,40 @@
-<href class="admin-header">
-  <h2>Class Schedule</h2>
+
+<div class="overview">
   <form action="/gym/ad-menu" method="get">
-    <input type="hidden" name="id" id="id" value="<%= @teacher.id %>">
-    <input type="submit" value="Back">
+    <input type="hidden" name="id" id="button" value="<%= @teacher.id %>">
+    <input type="submit" value="Back" id="button">
   </form>
   <form action="/gym/ad-create/<%= @teacher.id %>" method="get">
-    <input type="submit" value="Add a Class">
+    <input type="submit" value="Add a Class" id="button">
   </form>
   <form action="/gym/ad-view/<%= @teacher.id %>" method="get">
-    <input type="submit" value="View Your Classes">
+    <input type="submit" id="button" value="View Your Classes">
   </form>
+</div>
+<div class="menu" class="schedue">
+  <br>
+  <h2>Class Schedule</h2>
+  <br>
+  <table>
+    <thead>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Type</th>
+      <th>Room</th>
+    </thead>
+    <tbody>
+      <% for session in @sessions %>
+      <tr>
+        <td><%= session.event_date %></td>
+        <td><%= session.event_time %></td>
+        <td><%= session.type().title %></td>
+        <td><%= session.room().title %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>
+<div>
 
-</href>
-<br>
-<href>
-  <p><% for session in @sessions %></p>
-  <p><li><%= session.event_date %></li></p>
-  <p><li><%= session.event_time %></li></p>
-  <p><li><%= session.type().title %></li></p>
-  <p><li><%= session.room().title %></li></p>
-  <p><% end %></p>
-</href>
-<href>
-
-<h2>test</h2>
-</href>
+</div>

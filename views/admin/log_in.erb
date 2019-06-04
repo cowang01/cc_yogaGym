@@ -1,19 +1,25 @@
-<href class="admin-header">
-  <h2>Teacher Access</h2>
-  <a href="/gym">back</a>
-</href>
-<br>
-<href>
-  <form action="/gym/ad-menu" method="get">
-    <p>please enter your log in details below.</p>
-    <label for="user-id">Log in ID: </label>
-    <input for="user-id" type="number" name="id" id="id"><br>
-    <hr />
-    <p>..or your details</p>
-    <br>
-      <label for="user-name">User Name: </label>
-      <input for="user-name" type="text" name="name" id="name"><br>
-        <hr />
-    <input type="submit" name="submit">
+<div class="overview">
+  <form action="/gym" method="get">
+    <input id="button" type="submit" value="Back">
   </form>
-</href>
+  <div class="menu">
+    <h2>Teacher Access</h2>
+    <br>
+    <div>
+      <form action="/gym/ad-menu" method="get">
+        <p>please enter your log in details below.</p>
+        <br>
+        <label for="user-id">Log in ID: </label>
+        <input for="user-id" type="number" name="id" id="id"><br>
+        <br>
+        <hr />
+        <p>..or your details</p>
+        <br>
+        <label for="user-name">User Name: </label>
+        <input for="user-name" type="text" name="name" id="name"><br>
+        <hr />
+        <input id="button" type="submit" name="Log In">
+      </form>
+    </div>
+  </div>
+</div>

@@ -9,23 +9,138 @@ body {
   background-image: url('./background.jpg');
 }
 
-.front-box {
-  display: flex;
-  margin: 10px;
-  flex-direction: row;
-}
 
 .front-header {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  margin: 5px 30px;
+  margin: 20px;
+  padding: 2%;
+}
+
+.front-header img{
+  padding-top: 2%;
+}
+
+.front-header h1{
+  color: #AC3B61;
+  font-family: papyrus;
+}
+
+.front-menu {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  line-height: 2.0;
+  color: #EEE2DC;
+}
+
+.front-menu a {
+  color: #AC3B61;
 }
 
 .front-text {
   margin: 10px;
+  font-family: tahoma;
 }
 
-.front-text p {
+.front-text p{
   font-family: tahoma;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.front-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.overview {
+  margin: 7px;
+}
+
+.terms {
+  margin: 5%;
+  padding: 2%;
+  border-color: #123C69;
+  border-style: outset;
+  border-radius: 8px;
+}
+
+#break {
+    margin: 0% 5%;
+    padding: 0% 5%;
+    border-color: #BAB2B5;
+    border-style: outset;
+    border-radius: 8px;
+}
+
+#button {
+  font-size: 18px;
+  font-style: tahoma;
+  background-color: #AC3B61;
+  color: #EEE2DC;
+  border-radius: 5px;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#link {
+  color: #AC3B61;
+}
+
+.navigation {
+  line-height: 200%;
+}
+
+.admenu-header {
+  background-color: #EDC7B7;
+  padding: 5%;
+  border-color: #123C69;
+  border-style: double;
+  border-radius: 5%;
+}
+
+.schedule {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule p {
+  display: flex;
+  flex-direction: column;
+}
+
+td {
+  line-height: 200%;
+}
+
+table {
+  border-color: #123C69;
+  border: 2px solid;
+  width: 50%;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #BAB2B5;
+}
+
+.tabled {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tabled a {
+  color: #AC3B61;
 }
