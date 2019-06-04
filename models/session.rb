@@ -131,4 +131,10 @@ class Session
     return all_members
   end
 
+  def self.view_everything()
+    sql = "SELECT * FROM sessions"
+    sessions = SqlRunner.run(sql)
+    return sessions.map {|session| Session.new(session)}
+  end
+
 end#

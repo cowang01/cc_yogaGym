@@ -86,13 +86,13 @@ require_relative('../models/feedback.rb')
     case membership_vol
     when 1
       @member.membership_vol += 1
-      @member.membership = Time.now + 7
+      @member.membership = Date.today + 7
     when 2
       @member.membership_vol += 2
-      @member.membership = Time.now + 7
+      @member.membership = Date.today + 7
     when 10
       @member.membership_vol += 10
-      @member.membership = Time.now + 30
+      @member.membership = Date.today + 30
     else
     end
     @member.update()
@@ -102,7 +102,8 @@ require_relative('../models/feedback.rb')
   get "/gym/mem-book/:id" do
     @member = Member.find(params[:id])
     @session = Session.find(params['session_id'])
-    if @member.membership_vol > 0 && @member.membership > Time.now - 1
+
+    if @member.membership_vol > 0 && Date.strptime(@member.membership, '%Y-%d-%m') > Date.today - 1
       @session.member_id.push(@member.id)
       @member.membership_vol -= 1
       @session.update()
@@ -110,5 +111,11 @@ require_relative('../models/feedback.rb')
       erb(:'member/book_confirmed')
     else
     erb(:'member/book_unable')
-    end  
+    end
+  end
+
+  get "/gym/mem-view/:id" do
+    @member = Member.find(params[:id])
+    @sessions = Session.view_everything()
+    erb(:'member/booked')
   end

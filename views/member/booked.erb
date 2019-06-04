@@ -1,0 +1,18 @@
+<form action="/gym/mem-menu/<%= @member.id %>" method="get">
+  <input type="submit" value="back">
+</form>
+<br>
+<href>
+  <p>See below for your currently booked classes.</p>
+  <% for session in @sessions %>
+    <% for member in session.member_id.split(',')%>
+      <% if member.to_i == @member.id.to_i %>
+        <p><%= session.event_date%></p>
+        <form action="" method="post">
+          <input type="submit" value="Cancel Booking">
+        </form>
+      <% end %>
+    <% end %>
+  <% end %>
+
+</href>
