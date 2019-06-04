@@ -1,31 +1,37 @@
 <div class="overview">
-<div>
-  <form action="/gym/ad-view/<%= @session.teacher_id %>" method="get">
-    <input type="submit" value="Back" id="button">
-  </form>
-  <br><br>
-  <div class="menu">
-  <h2>Add Member</h2><br>
-  <br><br>
-   <% if @room.sized <= @session.member_id.count %>
-    <p>This Session is currently full, are you sure you want to add further members?</p>
-    <% end %>
-  <br><br>
-  <p><%= @type.title %></p><br>
-  <p>Date: <%= @session.event_date %>
-  <%= @session.event_time %></p><br>
-  <p>Room: <%= @room.title %></p><br>
+  <div>
+    <form action="/gym/ad-view/<%= @session.teacher_id %>" method="get">
+      <input type="submit" value="Back" id="button">
+    </form>
+    <br><br>
+    <div class="menu">
+      <h2>Add Member</h2><br>
+      <br><br>
+      <% if @room.sized <= @session.member_id.count %>
+      <p>This Session is currently full, are you sure you want to add further members?</p>
+      <% end %>
+      <br><br>
+      <p><%= @type.title %></p><br>
+      <p>Date: <%= @session.event_date %>
+        <%= @session.event_time %></p><br>
+        <p>Room: <%= @room.title %></p><br>
+        <br>
+        <form method="post" action="/gym/ad-push/<%= @session.id %>">
+          <label for="person_id">Add Person By ID</label>
+          <input type="number" id="person_id" name="member_id">
+          <br><br><p id="break"></p><br>
+          <label for="person_name">Available Persons: </label>
+          <select name="name" id="user-name">
+            <% for member in @members %>
+            <option value="<%= member.id %>"><%= member.id%> <%= member.name %></option>
+            <% end %>
+          </select>
+          <!--
+          <input type="text" id="member_name" name="member_name"><br> -->
+          <br><br>
+          <input type="submit" value="Update" id="button">
+        </form>
+      </div>
+    </div>
+  </div>
   <br>
-  <form method="post" action="/gym/ad-push/<%= @session.id %>">
-    <label for="person_id">Add Person By ID</label>
-    <input type="number" id="person_id" name="member_id">
-    <br><p>or</p>
-    <label for="person_name">Add Person By Name</label>
-    <input type="text" id="member_name" name="member_name"><br>
-    <br>
-    <input type="submit" value="Update" id="button">
-  </form>
-</div>
-</div>
-</div>
-<br>

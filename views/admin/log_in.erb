@@ -13,12 +13,12 @@
         <input for="user-id" type="number" name="id" id="id"><br>
         <br>
         <hr />
-        <p>..or your details</p>
+        <p>Available details: </p>
         <br>
-        <label for="user-name">User Name: </label>
+        <label for="user-name">Registered teachers: </label>
         <select name="name" id="user-name">
           <% for teacher in @teachers %>
-          <option value="<%= teacher.name %>"><%= teacher.name %></option>
+          <option value="<%= teacher.id %>"><%= teacher.id %> <%= teacher.name %></option>
           <% end %>
         </select>
         <!-- <input for="user-name" type="text" name="name" id="name"> -->

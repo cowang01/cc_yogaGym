@@ -21,6 +21,7 @@
       <th>Time</th>
       <th>Type</th>
       <th>Room</th>
+      <th>Teacher</th>
     </thead>
     <tbody>
       <% for session in @sessions %>
@@ -29,6 +30,7 @@
         <td><%= session.event_time %></td>
         <td><%= session.type().title %></td>
         <td><%= session.room().title %></td>
+        <td><%= session.teacher().name %></td>
       </tr>
       <% end %>
     </tbody>

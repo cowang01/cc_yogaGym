@@ -19,6 +19,7 @@
         <th>Time</th>
         <th>Type</th>
         <th>Room</th>
+        <th>Teacher</th>
         <th>Availability</th>
       </thead>
       <tbody>
@@ -28,6 +29,7 @@
           <td><%= session.event_time %></td>
           <td><%= session.type().title %></td>
           <td><%= session.room().title %></td>
+          <td><%= session.teacher().name %></td>
         <% if session.status == 'open' %>
         <form action="/gym/mem-book/<%= @member.id %>" method="get">
           <input type="hidden" name="session_id" id="session_id" value="<%= session.id %>">

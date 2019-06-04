@@ -66,4 +66,11 @@ class Teacher
     return sessions.map{ |session| Session.new(session) }
   end
 
+  def self.find_id(name)
+    sql = "SELECT * FROM teachers WHERE name = $1"
+    values = [name]
+    teacher = SqlRunner.run(sql, values)[0]
+    return teacher
+  end
+
 end#

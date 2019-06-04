@@ -131,6 +131,13 @@ class Session
     return all_members
   end
 
+  def teacher()
+    sql = "SELECT * FROM teachers WHERE id = $1"
+    values = [@teacher_id]
+    teacher = SqlRunner.run(sql, values)[0]
+    return Teacher.new(teacher)
+  end
+
   def self.view_everything()
     sql = "SELECT * FROM sessions"
     sessions = SqlRunner.run(sql)

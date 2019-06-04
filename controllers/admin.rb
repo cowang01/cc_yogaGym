@@ -92,6 +92,7 @@ post "/gym/ad-new/:id" do
     @session = Session.find(params[:id])
     @room = @session.room()
     @type = @session.type()
+    @members = Member.view_all()
     erb(:'admin/push')
   end
 
@@ -168,6 +169,13 @@ post "/gym/ad-new/:id" do
     @member.membership = Time.now + 7
     @member.update()
     @session.member_id.delete(params[:id])
+    @session.update()
+    redirect("/gym/ad-details/#{@session.id}")
+  end
+
+  post "/gym/ad-update_status/:id" do
+    @session = Session.find(params[:id])
+    @session.status = params['status']
     @session.update()
     redirect("/gym/ad-details/#{@session.id}")
   end
