@@ -1,29 +1,43 @@
-<href class="member-header">
-  <h2>Class Schedule</h2>
-  <form action="/gym/mem-menu/<%= @member.id %>" method="get">
-    <input type="submit" value="Back">
-  </form>
+<div class="overview">
+  <href class="member-header">
 
-  <form action="/gym/ad-view/<%= @member.id %>" method="get">
-    <input type="submit" value="View Your Booked Classes">
-  </form>
+    <form action="/gym/mem-menu/<%= @member.id %>" method="get">
+      <input type="submit" value="Back" id="button">
+    </form>
 
-</href>
-<br>
-<href>
-  <p><% for session in @sessions %></p>
-  <p><li><%= session.event_date %></li></p>
-  <p><li><%= session.event_time %></li></p>
-  <p><li><%= session.type().title %></li></p>
-  <p><li><%= session.room().title %></li></p>
-  <% if session.status == 'open' %>
-  <form action="/gym/mem-book/<%= @member.id %>" method="get">
-    <input type="hidden" name="session_id" id="session_id" value="<%= session.id %>">
-    <input type="submit" value="Book">
-  </form>
-  <% end %>
+    <form action="/gym/ad-view/<%= @member.id %>" method="get">
+      <input type="submit" id="button" value="View Your Booked Classes">
+    </form>
+    <br>
+  </div >
   <br>
-  <p><% end %></p>
-</href>
-<href>
-</href>
+  <div class="menu" class="schedule" >
+    <h2>Class Schedule</h2>
+    <table>
+      <thead>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Type</th>
+        <th>Room</th>
+        <th>Availability</th>
+      </thead>
+      <tbody>
+        <% for session in @sessions %>
+        <tr>
+          <td><%= session.event_date %></td>
+          <td><%= session.event_time %></td>
+          <td><%= session.type().title %></td>
+          <td><%= session.room().title %></td>
+        <% if session.status == 'open' %>
+        <form action="/gym/mem-book/<%= @member.id %>" method="get">
+          <input type="hidden" name="session_id" id="session_id" value="<%= session.id %>">
+          <td><input type="submit" value="Book" id="button2"></td>
+        </form>
+        </tr>
+        <br>
+        <% end %>
+        <p><% end %></p>
+      </tbody>
+    </table>
+  </div>
+</div>

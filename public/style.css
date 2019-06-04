@@ -83,6 +83,7 @@ body {
   background-color: #AC3B61;
   color: #EEE2DC;
   border-radius: 5px;
+  padding: 0 1%;
 }
 
 .menu {
@@ -111,6 +112,7 @@ body {
 .schedule {
   display: flex;
   flex-direction: column;
+
 }
 
 .schedule p {
@@ -127,7 +129,7 @@ table {
   border: 2px solid;
   width: 50%;
   text-align: center;
-  border-collapse: collapse;
+  border-collapse: separate;
 }
 
 thead {
@@ -143,4 +145,31 @@ thead {
 
 .tabled a {
   color: #AC3B61;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0 10%;
+}
+
+.more_details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.even_more_details {
+  display: flex;
+  flex-direction: column;
+}
+
+
+#button2 {
+  font-size: 14px;
+  font-style: tahoma;
+  background-color: #AC3B61;
+  color: #EEE2DC;
+  border-radius: 5px;
+  padding: 0 1%;
 }

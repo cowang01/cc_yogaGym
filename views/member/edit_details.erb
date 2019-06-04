@@ -1,18 +1,20 @@
-<href class="member-header">
-  <h2>Update Your Details/h2>
+<div class="overview">
+<div>
     <form action="/gym/mem-menu/<%= @member.id %>" method="get">
-      <input type="submit" value="back">
+      <input type="submit" value="back" id="button">
     </form>
-  </href>
+  </div>
   <br>
-  <href>
+  <div class="menu">
+      <h2>Update Your Details</h2>
+      <br>
     <form action="/gym/mem-update/<%= @member.id %>" method="post">
       <label for="name">Name: </label>
-      <input type="text" name="name" value="<%= @member.name %>"><br>
+      <input type="text" name="name" value="<%= @member.name %>"><br><br>
       <label for="info">Injury or information for your instructor: </label>
       <input type="text" name="info" value="<%= @member.info %>">
-      <br>
-      <input type="submit" value="Update">
+      <br><br>
+      <input type="submit" value="Update" id="button">
     </form>
-
-  </href>
+</div>
+  </div>

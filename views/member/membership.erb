@@ -1,27 +1,28 @@
-<href class="member-header">
-  <h2>Your Membership</h2>
-  <form action="/gym/mem-menu/<%= @member.id %>" method="get">
-    <input type="submit" value="back">
-  </form>
-</href>
-<br>
-<href>
-  <p>You currently have <%= @member.membership_vol %> credits, valid until <%= @member.membership %></p>
+<div class="overview">
+    <form action="/gym/mem-menu/<%= @member.id %>" method="get">
+      <input type="submit" value="Back" id="button">
+    </form>
   <br>
-  <p>What would you like to do?</p><br>
-  <form action="/gym/membership/<%= @member.id %>" method="post">
-
-    <input type="radio" name="membership_vol" value="1">
-    <label for="membership_vol">Single credit valid for seven days. £8.00</label><br>
-
-    <input type="radio" name="membership_vol" value="2">
-    <label for="membership_vol">Two credits valid for seven days. £14.00</label><br>
-
-    <input type="radio" name="membership_vol" value="10">
-    <label for="membership_vol">Ten credits valid for thirty days. £40.00</label><br>
+  <div class="menu">
+    <h2>Your Membership</h2>
     <br>
-    <input type="submit" value="purchase">
-  </form>
-  <br>
-  <p></p>
-</href>
+    <p>You currently have <b><%= @member.membership_vol %></b> credits, valid until <%= @member.membership %></p>
+    <br>
+    <p>What would you like to do?</p><br>
+    <form action="/gym/membership/<%= @member.id %>" method="post">
+
+      <input type="radio" name="membership_vol" value="1">
+      <label for="membership_vol">Single credit valid for seven days. £8.00</label><br>
+
+      <input type="radio" name="membership_vol" value="2">
+      <label for="membership_vol">Two credits valid for seven days. £14.00</label><br>
+
+      <input type="radio" name="membership_vol" value="10">
+      <label for="membership_vol">Ten credits valid for thirty days. £40.00</label><br>
+      <br>
+      <input type="submit" value="Purchase" id="button">
+    </form>
+    <br>
+    <p></p>
+  </div>
+</div>

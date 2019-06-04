@@ -14,12 +14,25 @@ get "/gym/admin" do
 end
 
 get "/gym/ad-menu" do
-  if Teacher.find(params['id'].to_i).id > 0
+  teachers = Teacher.view_all()
+  check = false
+  for teacher in teachers
+    if teacher.id == params['id'].to_i
+      check = true
+    end
+  end
+  if check == false
+    redirect("/gym/mem-incorrect")
+  else
     @teacher = Teacher.find(params['id'].to_i)
     erb(:'admin/menu')
-  else
-    erb(:welcome) #change to errror screen
   end
+  # if Teacher.find(params['id'].to_i).id > 0
+  #   @teacher = Teacher.find(params['id'].to_i)
+  #   erb(:'admin/menu')
+  # else
+  #   erb(:welcome) #change to errror screen
+  # end
 end
 
 get "/gym/ad-schedule/:id" do
@@ -82,10 +95,26 @@ post "/gym/ad-new/:id" do
   end
 
   post "/gym/ad-push/:id" do
-    @session = Session.find(params[:id])
-    @teacher = Teacher.find(@session.teacher_id)
-    @teacher.push_book(params[:member_id].to_i, params[:id])
-    redirect("/gym/ad-view/#{@teacher.id}")
+    members = Member.view_all()
+    check = false
+    for member in members
+      if member.id == params[:id]
+        check = true
+      end
+    end
+    if check == true
+      @session = Session.find(params[:id])
+      @teacher = Teacher.find(@session.teacher_id)
+      @teacher.push_book(params[:member_id].to_i, params[:id])
+      redirect("/gym/ad-view/#{@teacher.id}")
+    else
+      redirect("/gym/not-found/#{@teacher.id}")
+    end
+  end
+
+  get "/gym/not-found/:id" do
+    @teacher = Teacher.find(params[:id])
+    erb(:'admin/error101')
   end
 
   get "/gym/ad-details/:id" do

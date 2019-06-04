@@ -1,34 +1,43 @@
-<href>
-  <a href="/gym/ad-view/<%= @session.teacher_id %>">back</a>
-  <br>
-  <a href="/gym/ad-close/<%= @session.id %>">Close/Delete Class</a>
-  <br>
-  <p><%= @room.title %></p>
-  <p><%= @type.title %></p>
-  <p><%= @session.event_date %></p>
-  <p><%= @session.event_time %></p>
-  <br>
-</href>
-<href>
-  <p><% for member in @members %></p>
-
-  <p><%= member.name %></p>
-  <p><%= @session.member_check(member.id) %></p>
-  <p><%= member.info %></p>
-
-  <form action="/gym/ad-member/<%= member.id %>" method="get">
-    <input type="hidden" name="session_id" value="<%=@session.id%>">
-    <input type="submit" value="Update Details">
-  </form>
-
-  <form action="/gym/ad-delete_member/<%= member.id %>" method="get">
-    <input type="hidden" name="session_id" value="<%=@session.id%>">
-    <input type="submit" value="Remove Member">
+<div class="overview">
+  <form action="/gym/ad-view/<%= @session.teacher_id %>" method="get">
+    <input type="submit" value="back" id="button">
   </form>
   <br>
-
-  <p><% end %></p>
-</href>
+  <form action="/gym/ad-close/<%= @session.id %>" method="get">
+    <input type="submit" value="Close/Delete Class" id="button">
+  </form>
+  <div class="menu">
+    <br>
+    <p><%= @room.title %></p>
+    <p><%= @type.title %></p>
+    <p><%= @session.event_date %></p>
+    <p><%= @session.event_time %></p>
+    <br>
+  </div>
+  <div class="details">
+    <% for member in @members %>
+    <div class="more_details">
+      <p><%= member.name %></p><br><br>
+      <p> - </p>
+      <p><%= member.info %></p><br>
+      <p> </p>
+      <div class="even_more_details">
+        <form action="/gym/ad-member/<%= member.id %>" method="get">
+          <input type="hidden" name="session_id" value="<%=@session.id%>">
+          <input type="submit" id="button2" value="Update Details">
+        </form>
+        <p></p>
+        <form action="/gym/ad-delete_member/<%= member.id %>" method="get">
+          <input type="hidden" name="session_id" value="<%=@session.id%>">
+          <input type="submit" id="button2" value="Remove Member">
+        </form>
+      </div>
+      <br>
+    </div>
+    <br><br>
+    <% end %>
+  </div>
+</div>
 
 
 <!-- @session.member_check(member) -->
