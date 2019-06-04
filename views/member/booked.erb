@@ -1,18 +1,26 @@
+<div class="overview">
 <form action="/gym/mem-menu/<%= @member.id %>" method="get">
-  <input type="submit" value="back">
+  <input type="submit" value="Back" id="button">
 </form>
 <br>
-<href>
+<div class="menu">
   <p>See below for your currently booked classes.</p>
+  <br>
   <% for session in @sessions %>
     <% for member in session.member_id.split(',')%>
       <% if member.to_i == @member.id.to_i %>
         <p><%= session.event_date%></p>
-        <form action="" method="post">
-          <input type="submit" value="Cancel Booking">
+        <p><%= session.event_time%></p>
+        <p><%= session.room.title%></p>
+        <p><%= session.type.title%></p>
+        <form action="/gym/mem-remove/<%= @member.id %>" method="post">
+          <input type="hidden" name="session_id" value="<%= session.id %>">
+          <input type="submit" value="Cancel Booking" id="button2">
+          <br><br>
         </form>
       <% end %>
     <% end %>
   <% end %>
 
-</href>
+</div>
+</div>

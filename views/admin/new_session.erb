@@ -2,7 +2,7 @@
 
   <form action="/gym/ad-menu" method="get">
     <input type="hidden" name="id" id="id" value="<%= @teacher.id %>">
-    <input id="button" type="submit" value="back">
+    <input id="button" type="submit" value="Back">
   </form>
 </div>
       <br>
@@ -11,10 +11,10 @@
     <br>
   <form action="/gym/ad-new/<%=@teacher.id%>" method="post">
 
-    <label for="session-type">Class Type: </label>
+    <label for="session-type">Class Type: </label><br>
     <% for type in @types %>
       <input type="radio" id="type" name="type" value="<%= type.id %>"/>
-      <label for="type"><%= type.title %></label><br>
+      <label id="tahoma" for="type"><%= type.title %></label><br>
     <% end %>
     <br>
     <label for="event_date">Date: </label>
@@ -22,10 +22,10 @@
     <label for="event_time">Time: </label>
       <input type="time" name="event_time" id="event_time"/><br>
     <br>
-    <label for="room_id">Room: </label>
+    <label for="room_id">Room: </label><br>
     <% for room in @rooms %>
-      <input type="radio" name="room_id" id="room_id" value="<%= room.id %>"/>
-      <label for="room_id"> <%= room.title %></label><br>
+      <p></p><input type="radio" name="room_id" id="room_id" value="<%= room.id %>"/>
+      <label id="tahoma" for="room_id"> <%= room.title %></label><br>
     <% end %>
   <br>
     <label for="status">Set Status</label>

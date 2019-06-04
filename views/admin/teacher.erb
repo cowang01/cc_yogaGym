@@ -2,7 +2,7 @@
 </div>
 <form action="/gym/ad-menu" method="get">
   <input type="hidden" name="id" id="id" value="<%= @teacher.id %>">
-  <input type="submit" value="back" id="button">
+  <input type="submit" value="Back" id="button">
 </form>
 <br>
 <div class="tabled">
@@ -11,8 +11,8 @@
   <% for session in @sessions %>
     <p>Date: <%= session.event_date %></p>
     <p>Time: <%= session.event_time %></p>
-    <p>size: <%= session.member_id.split(',').count - 1%></p>
-    <p>status: <%= session.status %></p>
+    <p>Booked Members: <%= session.member_id.split(',').count - 1%></p>
+    <p>Status: <%= session.status %></p>
     <a href="/gym/ad-push/<%= session.id %>">Add Person</a>
     <a href="/gym/ad-details/<%= session.id %> ">View Class</a>
     <br><br>

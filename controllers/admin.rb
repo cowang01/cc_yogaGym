@@ -10,6 +10,7 @@ require_relative('../models/feedback.rb')
 
 
 get "/gym/admin" do
+  @teachers = Teacher.view_all()
   erb(:'admin/log_in')
 end
 
@@ -98,7 +99,7 @@ post "/gym/ad-new/:id" do
     members = Member.view_all()
     check = false
     for member in members
-      if member.id == params[:id]
+      if member.id == params[:id].to_i
         check = true
       end
     end

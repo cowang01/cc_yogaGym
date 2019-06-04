@@ -1,5 +1,9 @@
-<form action="/gym/ad-create/<%=@teacher.id%>" method="get">
-  <input type="submit" value="back">
-</form>
-
-<h2>Sorry, that slot is already taken</h2>
+<div class="overview">
+  <form action="/gym/ad-create/<%=@teacher.id%>" method="get">
+    <input type="submit" value="Back" id="button">
+  </form>
+  <br>
+  <div class="menu">
+    <h2>Sorry, that slot is already taken</h2>
+  </div>
+</div>

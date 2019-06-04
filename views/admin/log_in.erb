@@ -16,7 +16,13 @@
         <p>..or your details</p>
         <br>
         <label for="user-name">User Name: </label>
-        <input for="user-name" type="text" name="name" id="name"><br>
+        <select name="name" id="user-name">
+          <% for teacher in @teachers %>
+          <option value="<%= teacher.name %>"><%= teacher.name %></option>
+          <% end %>
+        </select>
+        <!-- <input for="user-name" type="text" name="name" id="name"> -->
+        <br>
         <hr />
         <input id="button" type="submit" name="Log In">
       </form>

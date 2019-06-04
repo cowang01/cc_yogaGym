@@ -30,15 +30,15 @@ room1 = Room.new({
 room1.save()
 
 teacher1 = Teacher.new({
-  'name' => 'Sasha Harper',
-  'bio' => 'Sasha (RYT500) is a yogini, world traveller and the founder of Shanti Yoga Glasgow.
-  Sasha has over 900 hours Yoga training with global teachers & is a Yoga Alliance Professionals UK Senior Yoga Teacher and her Teacher Trainings are fully Yoga Alliance Professionals certified.',
+  'name' => 'Nike God',
+  'bio' => 'Nike (RYT500) is a yogini, world traveller and the founder of Shanti Yoga Glasgow.
+  Nike has over 900 hours Yoga training with global teachers & is a Yoga Alliance Professionals UK Senior Yoga Teacher and her Teacher Trainings are fully Yoga Alliance Professionals certified.',
   'profile' => '../public/placeholder.jpeg'
   })
 teacher1.save()
 
 member1 = Member.new({
-  'name' => 'Graham Cowan',
+  'name' => 'Athena Greek',
   'join_date' => Date.strptime('2018-30-04', "%Y-%d-%m"),
   'waver' => 'true',
   'info' => 'Looking to work on hip openers',
@@ -49,7 +49,7 @@ member1 = Member.new({
 member1.save()
 
 session1 = Session.new({
-  'event_date' => Date.strptime('05/06/2019', "%d/%m/%Y").strftime("%Y-%m-%d"),
+  'event_date' => Date.strptime('07/06/2019', "%d/%m/%Y").strftime("%Y-%m-%d"),
   'event_time' => '18:00',
   'room_id' => room1.id,
   'teacher_id' => teacher1.id,

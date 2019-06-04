@@ -9,21 +9,25 @@ require_relative('../models/session.rb')
 require_relative('../models/feedback.rb')
 
 
-  get "/gym/new_member" do
-    erb(:'member/new_member')
-  end
+get "/gym/new_member" do
+  erb(:'member/new_member')
+end
 
-  post "/gym/new-member" do
+post "/gym/new-member" do
+  if params['waver'] == 'yes'
     @new_member = Member.new({
       'name' => params['name'],
       'join_date' => Time.now(),
-      'waver' => params['waver'],
+      'waver' => true,
       'info' => params['info'],
       'membership' => Time.now(),
       'membership_vol' => 0
-        })
-    @new_member.save()
-    redirect("/gym/new-member/#{@new_member.id}")
+      })
+      @new_member.save()
+      redirect("/gym/new-member/#{@new_member.id}")
+    else
+      redirect("/gym/new_member")
+    end
   end
 
   get "/gym/new-member/:id" do
@@ -110,7 +114,7 @@ require_relative('../models/feedback.rb')
       @member.update()
       erb(:'member/book_confirmed')
     else
-    erb(:'member/book_unable')
+      erb(:'member/book_unable')
     end
   end
 
@@ -118,4 +122,14 @@ require_relative('../models/feedback.rb')
     @member = Member.find(params[:id])
     @sessions = Session.view_everything()
     erb(:'member/booked')
+  end
+
+  post "/gym/mem-remove/:id" do
+    @member = Member.find(params[:id])
+    @session = Session.find(params['session_id'])
+    @session.member_id.delete(params[:id])
+    @member.membership_vol += 1
+    @session.update()
+    @member.update()
+    redirect("/gym/mem-view/#{@member.id}")
   end
