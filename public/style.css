@@ -177,3 +177,8 @@ thead {
 #tahoma {
   font-style: tahoma;
 }
+
+.news_image {
+  display: flex;
+  justify-content: center;
+}
