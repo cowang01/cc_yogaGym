@@ -44,7 +44,7 @@ class Session
   end
 
   def self.view_all()
-    sql = "SELECT * FROM sessions WHERE event_date >= NOW()"
+    sql = "SELECT * FROM sessions WHERE event_date >= NOW() ORDER BY event_date ASC, event_time ASC;"
     sessions = SqlRunner.run(sql)
     return sessions.map {|session| Session.new(session)}
   end
@@ -68,9 +68,17 @@ class Session
     if room.sized <= @member_id.count()
       @status = 'full'
       update()
-      return false
-    else
-      return true
+    end
+  end
+
+  def unavailable()
+    sql = "SELECT * FROM rooms WHERE id = $1"
+    values = [@room_id]
+    rooms = SqlRunner.run(sql, values)[0]
+    room = Room.new(rooms)
+    if room.sized >= @member_id.count
+      @status = "open"
+      update()
     end
   end
 

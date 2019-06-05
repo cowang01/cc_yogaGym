@@ -100,17 +100,17 @@ post "/gym/ad-new/:id" do
     members = Member.view_all()
     check = false
     for member in members
-      if member.id == params[:id].to_i
+      if member.id == params['member_id'].to_i
         check = true
       end
     end
     if check == true
       @session = Session.find(params[:id])
       @teacher = Teacher.find(@session.teacher_id)
-      @teacher.push_book(params[:member_id].to_i, params[:id])
+      @teacher.push_book(params['member_id'].to_i, params[:id].to_i)
       redirect("/gym/ad-view/#{@teacher.id}")
     else
-      redirect("/gym/not-found/#{@teacher.id}")
+      redirect("/gym/not-found/#{@session.teacher_id}")
     end
   end
 

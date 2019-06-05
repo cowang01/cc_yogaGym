@@ -108,8 +108,10 @@ post "/gym/new-member" do
     @session = Session.find(params['session_id'])
 
     if @member.membership_vol > 0 && Date.strptime(@member.membership, '%Y-%d-%m') > Date.today - 1
+      @session.member_id.push(0)
       @session.member_id.push(@member.id)
       @member.membership_vol -= 1
+      @session.available
       @session.update()
       @member.update()
       erb(:'member/book_confirmed')
@@ -129,6 +131,7 @@ post "/gym/new-member" do
     @session = Session.find(params['session_id'])
     @session.member_id.delete(params[:id])
     @member.membership_vol += 1
+    @session.unavailable()
     @session.update()
     @member.update()
     redirect("/gym/mem-view/#{@member.id}")
