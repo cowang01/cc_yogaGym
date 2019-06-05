@@ -107,7 +107,7 @@ post "/gym/new-member" do
     @member = Member.find(params[:id])
     @session = Session.find(params['session_id'])
 
-    if @member.membership_vol > 0 && Date.strptime(@member.membership, '%Y-%d-%m') > Date.today - 1
+    if @member.membership_vol > 0 && Date.strptime(@member.membership, '%Y-%m-%d') > Date.today - 1
       @session.member_id.push(0)
       @session.member_id.push(@member.id)
       @member.membership_vol -= 1
