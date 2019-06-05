@@ -179,3 +179,9 @@ post "/gym/ad-new/:id" do
     @session.update()
     redirect("/gym/ad-details/#{@session.id}")
   end
+
+  get "/gym/ad-news/:id" do
+    @user = Teacher.find(params[:id])
+    @address = "ad-menu"
+    erb(:news)
+  end

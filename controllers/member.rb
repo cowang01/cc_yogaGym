@@ -133,3 +133,9 @@ post "/gym/new-member" do
     @member.update()
     redirect("/gym/mem-view/#{@member.id}")
   end
+
+  get "/gym/mem-news/:id" do
+    @user = Member.find(params[:id])
+    @address = "mem-menu/#{@user.id}"
+    erb(:news)
+  end
